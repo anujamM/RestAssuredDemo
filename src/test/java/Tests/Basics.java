@@ -47,9 +47,10 @@ public class Basics extends RESTBase{
 
 				.then().extract().response();
 		
-		responsePat.then().statusCode(201);
-		System.out.println("Response is: " +responsePat.toString());
-		System.out.println("Encounter Number is: " + encNo);
+                responsePat.then().statusCode(201);
+                encNo = utils.getID(responsePat);
+                System.out.println("Response is: " + responsePat.toString());
+                System.out.println("Encounter Number is: " + encNo);
 	
 	 }
 	
