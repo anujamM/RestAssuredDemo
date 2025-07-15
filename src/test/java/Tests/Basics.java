@@ -53,9 +53,9 @@ public class Basics extends RESTBase{
 	
 	 }
 	
-//	 @Test(dependsOnMethods = { "createEnounterTest" })
-//	 public void getEnounterTest() {
-//	
+//	 @Test(dependsOnMethods = { "createEncounterTest" })
+//	 public void getEncounterTest() {
+//             // Retrieves the newly created encounter by ID	
 //	 }
 
 }
