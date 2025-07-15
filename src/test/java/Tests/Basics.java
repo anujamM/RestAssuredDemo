@@ -34,8 +34,8 @@ public class Basics extends RESTBase{
 		
 	}
 
-	 @Test(dependsOnMethods = { "createPersonTest" })
-	 public void createEnounterTest() {
+         @Test(dependsOnMethods = { "createPersonTest" })
+         public void createEncounterTest() {
 		 
 		 Response responsePat = 
 				 given()
@@ -53,8 +53,8 @@ public class Basics extends RESTBase{
 	
 	 }
 	
-//	 @Test(dependsOnMethods = { "createEnounterTest" })
-//	 public void getEnounterTest() {
+//	 @Test(dependsOnMethods = { "createEncounterTest" })
+//	 public void getEncounterTest() {
 //	
 //	 }
 
