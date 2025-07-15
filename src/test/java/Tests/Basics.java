@@ -3,6 +3,7 @@ package Tests;
 import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
 
 import base.RESTBase;
 import io.restassured.response.Response;
@@ -34,8 +35,8 @@ public class Basics extends RESTBase{
 		
 	}
 
-	 @Test(dependsOnMethods = { "createPersonTest" })
-	 public void createEnounterTest() {
+         @Test(dependsOnMethods = { "createPersonTest" })
+         public void createEncounterTest() {
 		 
 		 Response responsePat = 
 				 given()
@@ -47,15 +48,24 @@ public class Basics extends RESTBase{
 
 				.then().extract().response();
 		
-		responsePat.then().statusCode(201);
-		System.out.println("Response is: " +responsePat.toString());
-		System.out.println("Encounter Number is: " + encNo);
+                responsePat.then().statusCode(201);
+                encNo = utils.getID(responsePat);
+                System.out.println("Response is: " + responsePat.toString());
+                System.out.println("Encounter Number is: " + encNo);
 	
 	 }
 	
-//	 @Test(dependsOnMethods = { "createEnounterTest" })
-//	 public void getEnounterTest() {
-//	
-//	 }
+       @Test(dependsOnMethods = { "createEncounterTest" })
+       public void getEnounterTest() {
+               Response response =
+                               given()
+                               .auth().preemptive().basic(USERNAME, PASSWORD)
+                               .when().get(ENCOUNTER + encNo)
+                               .then().extract().response();
+
+               response.then().statusCode(200);
+               assertEquals(response.jsonPath().getString("id"), encNo);
+
+       }
 
 }
